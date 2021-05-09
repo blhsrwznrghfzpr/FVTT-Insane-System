@@ -6,7 +6,7 @@
   "minimumCoreVersion": "0.5.6",
   "compatibleCoreVersion": "0.6.6",
   "templateVersion": 1,
-  "author": "ltaeng",
+  "author": "ltaeng, trpg_yoshi",
   "esmodules": ["module/insane.js"],
   "styles": ["styles/insane.css"],
   "packs": [],
@@ -18,8 +18,8 @@
   "gridUnits": "ft",
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "sanity",
-  "url": "https://github.com/ksx0330/FVTT-Insane-System",
-  "manifest": "https://raw.githubusercontent.com/ksx0330/FVTT-Insane-System/main/system.json",
-  "download": "https://codeload.github.com/ksx0330/FVTT-Insane-System/zip/main",
+  "url": "https://github.com/blhsrwznrghfzpr/FVTT-Insane-System",
+  "manifest": "https://raw.githubusercontent.com/blhsrwznrghfzpr/FVTT-Insane-System/main/system.json",
+  "download": "https://codeload.github.com/blhsrwznrghfzpr/FVTT-Insane-System/zip/main",
   "license": "LICENSE.txt"
 }
