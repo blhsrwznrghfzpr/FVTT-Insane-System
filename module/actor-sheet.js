@@ -158,14 +158,45 @@ export class InsaneActorSheet extends ActorSheet {
 
     let roll = new Roll("2d6");
     roll.roll();
-    chatData.content = await renderTemplate("systems/insane/templates/roll.html", {
-        formula: roll.formula,
+
+    const diceTotal = roll.dice
+      .flatMap((die) => die.results)
+      .map((result) => result.result)
+      .reduce((a, b) => a + b);
+
+    let resultText = "";
+    let isSuccess = false;
+    if (diceTotal <= 2) {
+      resultText = game.i18n.localize("INSANE.CHECK.Fumble");
+      isSuccess = false;
+    } else if (diceTotal >= 12) {
+      resultText = game.i18n.localize("INSANE.CHECK.Special");
+      isSuccess = true;
+    } else if (roll.total >= num) {
+      resultText = game.i18n.localize("INSANE.CHECK.Success");
+      isSuccess = true;
+    } else {
+      resultText = game.i18n.localize("INSANE.CHECK.Failure");
+      isSuccess = false;
+    }
+
+    const formula = game.i18n.format("INSANE.CHECK.Formula", {
+      formula: roll.formula,
+      num,
+    });
+
+    chatData.content = await renderTemplate(
+      "systems/insane/templates/roll.html",
+      {
+        formula,
         flavor: null,
         user: game.user._id,
         tooltip: await roll.getTooltip(),
-        total: Math.round(roll.total * 100) / 100,
-        num: num
-    });
+        total: roll.total,
+        isSuccess,
+        resultText,
+      }
+    );
 
     if (game.dice3d) {
         game.dice3d.showForRoll(roll, game.user, true, chatData.whisper, chatData.blind).then(displayed => ChatMessage.create(chatData));;

@@ -28,10 +28,6 @@ Hooks.once("init", async function() {
     Handlebars.registerHelper('ifOrEquals', function(arg1, arg2, arg3, arg4, options) {
         return (arg1 == arg2 || arg3 == arg4) ? options.fn(this) : options.inverse(this);
     });
-
-    Handlebars.registerHelper('ifSuccess', function(arg1, arg2, options) {
-        return (arg1 >= arg2) ? options.fn(this) : options.inverse(this);
-    });
 });
 
 

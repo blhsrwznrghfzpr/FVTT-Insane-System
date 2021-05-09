@@ -1,4 +1,9 @@
 {
+  "INSANE.CHECK.Formula": "{formula} >= {num}",
+  "INSANE.CHECK.Success": "成功",
+  "INSANE.CHECK.Failure": "失敗",
+  "INSANE.CHECK.Special": "スペシャル",
+  "INSANE.CHECK.Fumble": "ファンブル",
   "INSANE.HP": "生命力",
   "INSANE.Sanity": "正気度",
   "INSANE.Curiosity": "好奇心",
