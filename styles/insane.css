@@ -8,13 +8,14 @@
   padding: 5px;
   overflow-y: hidden;
 }
-.insane .sheet-header {
-  height: 100px;
+.insane header.sheet-header {
+  height: 180px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+  align-items: start;
   margin-bottom: 10px;
 }
 .insane .sheet-header .profile-img {

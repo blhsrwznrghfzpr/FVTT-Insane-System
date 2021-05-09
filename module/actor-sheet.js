@@ -11,8 +11,14 @@ export class InsaneActorSheet extends ActorSheet {
       template: "systems/insane/templates/actor-sheet.html",
       width: 800,
       height: 800,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
-      dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
+      tabs: [
+        {
+          navSelector: ".sheet-tabs",
+          contentSelector: ".sheet-body",
+          initial: "skill",
+        },
+      ],
+      dragDrop: [{ dragSelector: ".item-list .item", dropSelector: null }],
     });
   }
 
@@ -62,48 +68,46 @@ export class InsaneActorSheet extends ActorSheet {
     html.find(".talent-name").click(this._onRollTalent.bind(this));
 
     // Owned Item management
-    html.find('.item-create').click(this._onItemCreate.bind(this));
+    html.find(".item-create").click(this._onItemCreate.bind(this));
 
     // Update Inventory Item
-    html.find('.item-edit').click(ev => {
+    html.find(".item-edit").click((ev) => {
       const li = $(ev.currentTarget).parents(".item");
       const item = this.actor.getOwnedItem(li.data("itemId"));
       item.sheet.render(true);
     });
 
     // Delete Inventory Item
-    html.find('.item-delete').click(ev => {
+    html.find(".item-delete").click((ev) => {
       const li = $(ev.currentTarget).parents(".item");
       this.actor.deleteOwnedItem(li.data("itemId"));
       li.slideUp(200, () => this.render(false));
     });
 
-
     // Talent
-    html.find('.item-label').click(this._showItemDetails.bind(this));
+    html.find(".item-label").click(this._showItemDetails.bind(this));
     html.find(".echo-item").click(this._echoItemDescription.bind(this));
 
     // Use Item
     html.find(".use-item").click(this._useItem.bind(this));
 
     if (this.actor.owner) {
-      let handler = ev => this._onDragStart(ev);
-      html.find('li.item').each((i, li) => {
+      let handler = (ev) => this._onDragStart(ev);
+      html.find("li.item").each((i, li) => {
         if (li.classList.contains("inventory-header")) return;
         li.setAttribute("draggable", true);
         li.addEventListener("dragstart", handler, false);
       });
     }
-
   }
 
   /* -------------------------------------------- */
 
   /** @override */
-  setPosition(options={}) {
+  setPosition(options = {}) {
     const position = super.setPosition(options);
     const sheetBody = this.element.find(".sheet-body");
-    const bodyHeight = position.height - 500;
+    const bodyHeight = position.height - 265;
     sheetBody.css("height", bodyHeight);
     return position;
   }

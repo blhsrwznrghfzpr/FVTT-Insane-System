@@ -1,5 +1,5 @@
 <form class="{{cssClass}}" autocomplete="off">
-   
+
     {{!-- Sheet Header --}}
     <header class="sheet-header">
         <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
@@ -8,6 +8,20 @@
               <input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
               <a class="inline-roll" data-flavor="{{actor.name}}" data-formula="2d6"><i class="fas fa-dice"></i></a>
             </h1>
+            <table>
+                <tr>
+                    <th>{{localize "INSANE.Age"}}</th>
+                    <td><input type="text" name="data.details.age" value="{{data.details.age}}"></td>
+                    <th>{{localize "INSANE.Gender"}}</th>
+                    <td><input type="text" name="data.details.sex" value="{{data.details.sex}}"></td>
+                </tr>
+                <tr>
+                    <th>{{localize "INSANE.Job"}}</th>
+                    <td><input type="text" name="data.details.job" value="{{data.details.job}}"></td>
+                    <th>{{localize "INSANE.Exp"}}</th>
+                    <td><input type="text" name="data.details.exp" value="{{data.details.exp}}"></td>
+                </tr>
+            </table>
             <div class="resource quater-width">
                 <span>{{localize "INSANE.HP"}}</span>
                 <input type="text" class="number-input" name="data.health.value" value="{{data.health.value}}" data-dtype="Number"/>
@@ -43,130 +57,110 @@
         </div>
     </header>
 
-    <div class="talent-table">
-        <table>
-            <colgroup>
-                <col span="1" style="width: 5%;">
-                <col span="1" style="width: 2%;">
-                <col span="1" style="width: 10%;">
-                <col span="1" style="width: 2%;">
-                <col span="1" style="width: 10%;">
-                <col span="1" style="width: 2%;">
-                <col span="1" style="width: 10%;">
-                <col span="1" style="width: 2%;">
-                <col span="1" style="width: 10%;">
-                <col span="1" style="width: 2%;">
-                <col span="1" style="width: 10%;">
-                <col span="1" style="width: 2%;">
-                <col span="1" style="width: 10%;">
-                <col span="1" style="width: 5%;">
-            </colgroup>
-
-            <tbody>
-                <tr>
-                    <th></th>
-                    <td></td>
-                    <th>{{localize "INSANE.A1"}}</th>
-                    <td></td>
-                    <th>{{localize "INSANE.B1"}}</th>
-                    <td></td>
-                    <th>{{localize "INSANE.C1"}}</th>
-                    <td></td>
-                    <th>{{localize "INSANE.D1"}}</th>
-                    <td></td>
-                    <th>{{localize "INSANE.E1"}}</th>
-                    <td></td>
-                    <th>{{localize "INSANE.F1"}}</th>
-                    <th></th>
-                </tr>
-                {{#each data.tables}}  
-                <tr>
-                    <th>{{number}}</th>
-                    <td {{#ifEquals ../data.talent.curiosity 1}} class="active" {{/ifEquals}}></td>
-                    <td {{#if line.[0].state}} class="checked" {{/if}} >
-                        <input class="talent-checkbox" type="checkbox" name="{{line.[0].name}}.state" {{#if line.[0].state}} checked {{/if}} >
-                        <input type="hidden" name="{{line.[0].name}}.num" value="{{line.[0].num}}">
-                        <label class="talent-name" data-title="{{localize line.[0].title}}" data-num="{{line.[0].num}}">{{localize line.[0].title}}</label>
-                    </td>
-
-                    <td {{#ifOrEquals ../data.talent.curiosity 1 ../data.talent.curiosity 2}} class="active" {{/ifOrEquals}}></td>
-                    <td {{#if line.[1].state}} class="checked" {{/if}} >
-                        <input class="talent-checkbox" type="checkbox" name="{{line.[1].name}}.state" {{#if line.[1].state}} checked {{/if}} >
-                        <input type="hidden" name="{{line.[1].name}}.num" value="{{line.[1].num}}">
-                        <label class="talent-name" data-title="{{localize line.[1].title}}" data-num="{{line.[1].num}}">{{localize line.[1].title}}</label>
-                    </td>
-
-                    <td {{#ifOrEquals ../data.talent.curiosity 2 ../data.talent.curiosity 3}} class="active" {{/ifOrEquals}}></td>
-
-                    <td {{#if line.[2].state}} class="checked" {{/if}} >
-                        <input class="talent-checkbox" type="checkbox" name="{{line.[2].name}}.state" {{#if line.[2].state}} checked {{/if}} >
-                        <input type="hidden" name="{{line.[2].name}}.num" value="{{line.[2].num}}">
-                        <label class="talent-name" data-title="{{localize line.[2].title}}" data-num="{{line.[2].num}}">{{localize line.[2].title}}</label>
-                    </td>
-
-                    <td {{#ifOrEquals ../data.talent.curiosity 3 ../data.talent.curiosity 4}} class="active" {{/ifOrEquals}}></td>
-
-                    <td {{#if line.[3].state}} class="checked" {{/if}} >
-                        <input class="talent-checkbox" type="checkbox" name="{{line.[3].name}}.state" {{#if line.[3].state}} checked {{/if}} >
-                        <input type="hidden" name="{{line.[3].name}}.num" value="{{line.[3].num}}">
-                        <label class="talent-name" data-title="{{localize line.[3].title}}" data-num="{{line.[3].num}}">{{localize line.[3].title}}</label>
-                    </td>
-
-                    <td {{#ifOrEquals ../data.talent.curiosity 4 ../data.talent.curiosity 5}} class="active" {{/ifOrEquals}}></td>
-
-                    <td {{#if line.[4].state}} class="checked" {{/if}} >
-                        <input class="talent-checkbox" type="checkbox" name="{{line.[4].name}}.state" {{#if line.[4].state}} checked {{/if}} >
-                        <input type="hidden" name="{{line.[4].name}}.num" value="{{line.[4].num}}">
-                        <label class="talent-name" data-title="{{localize line.[4].title}}" data-num="{{line.[4].num}}">{{localize line.[4].title}}</label>
-                    </td>
-
-                    <td {{#ifOrEquals ../data.talent.curiosity 5 ../data.talent.curiosity 6}} class="active" {{/ifOrEquals}}></td>
-
-                    <td {{#if line.[5].state}} class="checked" {{/if}} >
-                        <input class="talent-checkbox" type="checkbox" name="{{line.[5].name}}.state" {{#if line.[5].state}} checked {{/if}} >
-                        <input type="hidden" name="{{line.[5].name}}.num" value="{{line.[5].num}}">
-                        <label class="talent-name" data-title="{{localize line.[5].title}}" data-num="{{line.[5].num}}">{{localize line.[5].title}}</label>
-                    </td>
-                    <th>{{number}}</th>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-
-    </div>
-
-
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">{{localize "INSANE.Description"}}</a>
+        <a class="item" data-tab="skill">{{localize "INSANE.Skill"}}</a>
         <a class="item" data-tab="ability">{{localize "INSANE.Ability"}}</a>
         <a class="item" data-tab="bonds">{{localize "INSANE.Bonds"}}</a>
         <a class="item" data-tab="items">{{localize "INSANE.Items"}}</a>
+        <a class="item" data-tab="description">{{localize "INSANE.Description"}}</a>
     </nav>
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
-
-        {{!-- Biography Tab --}}
-        <div class="tab biography" data-group="primary" data-tab="description">
-            <h2>{{localize "INSANE.Basic"}}</h2>
+        {{!-- Skill Tab --}}
+        <div class="tab items" data-group="primary" data-tab="skill">
+          <div class="talent-table">
             <table>
-                <tr>
-                    <th>{{localize "INSANE.Age"}}</th>
-                    <td><input type="text" name="data.details.age" value="{{data.details.age}}"></td>
-                    <th>{{localize "INSANE.Gender"}}</th>
-                    <td><input type="text" name="data.details.sex" value="{{data.details.sex}}"></td>
-                </tr>
-                <tr>
-                    <th>{{localize "INSANE.Job"}}</th>
-                    <td><input type="text" name="data.details.job" value="{{data.details.job}}"></td>
-                    <th>{{localize "INSANE.Exp"}}</th>
-                    <td><input type="text" name="data.details.exp" value="{{data.details.exp}}"></td>
-                </tr>
+                <colgroup>
+                    <col span="1" style="width: 5%;">
+                    <col span="1" style="width: 2%;">
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 2%;">
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 2%;">
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 2%;">
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 2%;">
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 2%;">
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 5%;">
+                </colgroup>
 
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <th>{{localize "INSANE.A1"}}</th>
+                        <td></td>
+                        <th>{{localize "INSANE.B1"}}</th>
+                        <td></td>
+                        <th>{{localize "INSANE.C1"}}</th>
+                        <td></td>
+                        <th>{{localize "INSANE.D1"}}</th>
+                        <td></td>
+                        <th>{{localize "INSANE.E1"}}</th>
+                        <td></td>
+                        <th>{{localize "INSANE.F1"}}</th>
+                        <th></th>
+                    </tr>
+                    {{#each data.tables}}
+                    <tr>
+                        <th>{{number}}</th>
+                        <td {{#ifEquals ../data.talent.curiosity 1}} class="active" {{/ifEquals}}></td>
+                        <td {{#if line.[0].state}} class="checked" {{/if}} >
+                            <input class="talent-checkbox" type="checkbox" name="{{line.[0].name}}.state" {{#if line.[0].state}} checked {{/if}} >
+                            <input type="hidden" name="{{line.[0].name}}.num" value="{{line.[0].num}}">
+                            <label class="talent-name" data-title="{{localize line.[0].title}}" data-num="{{line.[0].num}}">{{localize line.[0].title}}</label>
+                        </td>
+
+                        <td {{#ifOrEquals ../data.talent.curiosity 1 ../data.talent.curiosity 2}} class="active" {{/ifOrEquals}}></td>
+                        <td {{#if line.[1].state}} class="checked" {{/if}} >
+                            <input class="talent-checkbox" type="checkbox" name="{{line.[1].name}}.state" {{#if line.[1].state}} checked {{/if}} >
+                            <input type="hidden" name="{{line.[1].name}}.num" value="{{line.[1].num}}">
+                            <label class="talent-name" data-title="{{localize line.[1].title}}" data-num="{{line.[1].num}}">{{localize line.[1].title}}</label>
+                        </td>
+
+                        <td {{#ifOrEquals ../data.talent.curiosity 2 ../data.talent.curiosity 3}} class="active" {{/ifOrEquals}}></td>
+
+                        <td {{#if line.[2].state}} class="checked" {{/if}} >
+                            <input class="talent-checkbox" type="checkbox" name="{{line.[2].name}}.state" {{#if line.[2].state}} checked {{/if}} >
+                            <input type="hidden" name="{{line.[2].name}}.num" value="{{line.[2].num}}">
+                            <label class="talent-name" data-title="{{localize line.[2].title}}" data-num="{{line.[2].num}}">{{localize line.[2].title}}</label>
+                        </td>
+
+                        <td {{#ifOrEquals ../data.talent.curiosity 3 ../data.talent.curiosity 4}} class="active" {{/ifOrEquals}}></td>
+
+                        <td {{#if line.[3].state}} class="checked" {{/if}} >
+                            <input class="talent-checkbox" type="checkbox" name="{{line.[3].name}}.state" {{#if line.[3].state}} checked {{/if}} >
+                            <input type="hidden" name="{{line.[3].name}}.num" value="{{line.[3].num}}">
+                            <label class="talent-name" data-title="{{localize line.[3].title}}" data-num="{{line.[3].num}}">{{localize line.[3].title}}</label>
+                        </td>
+
+                        <td {{#ifOrEquals ../data.talent.curiosity 4 ../data.talent.curiosity 5}} class="active" {{/ifOrEquals}}></td>
+
+                        <td {{#if line.[4].state}} class="checked" {{/if}} >
+                            <input class="talent-checkbox" type="checkbox" name="{{line.[4].name}}.state" {{#if line.[4].state}} checked {{/if}} >
+                            <input type="hidden" name="{{line.[4].name}}.num" value="{{line.[4].num}}">
+                            <label class="talent-name" data-title="{{localize line.[4].title}}" data-num="{{line.[4].num}}">{{localize line.[4].title}}</label>
+                        </td>
+
+                        <td {{#ifOrEquals ../data.talent.curiosity 5 ../data.talent.curiosity 6}} class="active" {{/ifOrEquals}}></td>
+
+                        <td {{#if line.[5].state}} class="checked" {{/if}} >
+                            <input class="talent-checkbox" type="checkbox" name="{{line.[5].name}}.state" {{#if line.[5].state}} checked {{/if}} >
+                            <input type="hidden" name="{{line.[5].name}}.num" value="{{line.[5].num}}">
+                            <label class="talent-name" data-title="{{localize line.[5].title}}" data-num="{{line.[5].num}}">{{localize line.[5].title}}</label>
+                        </td>
+                        <th>{{number}}</th>
+                    </tr>
+                    {{/each}}
+                </tbody>
             </table>
-            <h2>{{localize "INSANE.Memo"}}</h2>
-            {{editor content=data.details.biography target="data.details.biography" button=true owner=owner editable=editable}}
+
+          </div>
         </div>
 
         {{!-- Owned Ability Tab --}}
@@ -183,11 +177,11 @@
             <ol class="items-list">
             {{#each actor.abilityList as |item id|}}
               <li class="item flexrow" data-item-id="{{item._id}}" draggable="true">
-                
+
                 <h4 class="item-name">
                     <span class="echo-item">
                         <i class="fas fa-book"></i>
-                    </span> 
+                    </span>
                     <span class="item-label">{{item.name}} |
                         <b>{{localize "INSANE.Type"}}</b> : {{item.data.type}} |
                         <b>{{localize "INSANE.Talent"}}</b> : {{item.data.talent}}
@@ -224,14 +218,14 @@
             <ol class="items-list">
             {{#each actor.bondList as |item id|}}
               <li class="item flexrow" data-item-id="{{item._id}}" draggable="true">
-                
+
                 <h4 class="item-name">
                     <span class="echo-item">
                         <i class="fas fa-book"></i>
-                    </span> 
+                    </span>
                     <span class="item-label">{{item.name}} |
-                        <b>{{localize "INSANE.Residence"}}</b> : {{#if item.data.residence}} O {{else}} X {{/if}} | 
-                        <b>{{localize "INSANE.Secret"}}</b> : {{#if item.data.secret}} O {{else}} X {{/if}} | 
+                        <b>{{localize "INSANE.Residence"}}</b> : {{#if item.data.residence}} O {{else}} X {{/if}} |
+                        <b>{{localize "INSANE.Secret"}}</b> : {{#if item.data.secret}} O {{else}} X {{/if}} |
                         <b>{{localize "INSANE.Feeling"}}</b> : {{item.data.feeling}}
                         <span class="item-details-toggle">
                             <i class="fas fa-chevron-down"></i>
@@ -265,11 +259,11 @@
             <ol class="items-list">
             {{#each actor.itemList as |item id|}}
               <li class="item flexrow" data-item-id="{{item._id}}" draggable="true">
-                
+
                 <h4 class="item-name">
                     <span class="echo-item">
                         <i class="fas fa-book"></i>
-                    </span> 
+                    </span>
                     <span class="item-label">{{item.name}} X {{item.data.quantity}}
                         <span class="item-details-toggle">
                             <i class="fas fa-chevron-down"></i>
@@ -290,6 +284,11 @@
           </div>
         </div>
 
+        {{!-- Biography Tab --}}
+        <div class="tab biography" data-group="primary" data-tab="description">
+            {{editor content=data.details.biography target="data.details.biography" button=true owner=owner editable=editable}}
+        </div>
+
+
     </section>
 </form>
-
